@@ -46,7 +46,15 @@ def main():
         sys.exit(1)
     for name, seq in read_fasta(sys.argv[1]):
         print(f"{name}\tGC = {100 * gc_content(seq):.1f}%,\tAT = {100 * at_content(seq):.1f}%,\tlength = {len(seq)}nt")
-
+    seqCount = 0
+    totalGC = 0
+    for name, seq in read_fasta(sys.argv[1]):
+        seqCount = seqCount + 1
+        seqGC = 100 * gc_content(seq)
+        totalGC = totalGC + seqGC
+    print(f"The average GC content of all sequences is {totalGC / seqCount}%")
 
 if __name__ == "__main__":
     main()
+    
+
